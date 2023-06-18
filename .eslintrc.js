@@ -22,6 +22,9 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'no-console': 'error',
+    'no-debugger': 'error',
+    'arrow-body-style': ['error', 'as-needed'],
+    'react/self-closing-comp': ['error', { component: true, html: true }],
   },
   ignorePatterns: ['.eslintrc.js', 'webpack.config.js', 'jest.config.js'],
 };
