@@ -2,8 +2,8 @@
 // Please do not change this file!
 interface CssExports {
   'color-blue': string;
-  redText: string;
-  smallText: string;
+  'red-text': string;
+  'small-text': string;
 }
 export const cssExports: CssExports;
 export default cssExports;
