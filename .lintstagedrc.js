@@ -1,23 +1,24 @@
-// import { ESLint } from 'eslint';
+// {
+//   "app/*.ts": ["prettier --write", "npm run lint"],
+//   "ignore": ["node_modules", "dist", "package-lock.json"]
+// }
 
-// const removeIgnoredFiles = async files => {
-//   const eslint = new ESLint();
-//   const isIgnored = await Promise.all(
-//     files.map(file => {
-//       return eslint.isPathIgnored(file);
-//     })
-//   );
-//   const filteredFiles = files.filter((_, i) => !isIgnored[i]);
-//   return filteredFiles.join(' ');
-// };
+import { ESLint } from 'eslint';
 
-// export default {
-//   '**/*.{ts,js,jsx,tsx}': async files => {
-//     const filesToLint = await removeIgnoredFiles(files);
-//     return [`eslint ${filesToLint} --fix --max-erros=0 .`];
-//   },
-// };
+const removeIgnoredFiles = async files => {
+  const eslint = new ESLint();
+  const isIgnored = await Promise.all(
+    files.map(file => {
+      return eslint.isPathIgnored(file);
+    })
+  );
+  const filteredFiles = files.filter((_, i) => !isIgnored[i]);
+  return filteredFiles.join(' ');
+};
 
-{
-  '**/*.{ts,js,jsx,tsx}':['yarn lint']
-}
+export default {
+  '**/*.{ts,js,}': async files => {
+    const filesToLint = await removeIgnoredFiles(files);
+    return ['npm run prettier', `npm run lint ${filesToLint}`];
+  },
+};
